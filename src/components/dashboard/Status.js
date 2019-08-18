@@ -9,11 +9,10 @@ import {
   CardBody
 } from "reactstrap";
 import { connect } from "react-redux";
-// import { deleteStatus } from "../../store/users/actions";
 import Moment from "react-moment";
 
 const Status = props => {
-  console.log("Status Props", props);
+  console.log("Users props:", props.users);
   return (
     <div className="container">
       <Card className="mt-2">
@@ -22,7 +21,7 @@ const Status = props => {
             <CardImg
               top
               style={{ width: 150 }}
-              src="https://via.placeholder.com/100"
+              src={props.users.photo_url}
               alt="IMG"
             />
           </Col>
@@ -44,12 +43,15 @@ const Status = props => {
       </Card>
     </div>
   );
+  // } else {
+  //   return <div>Loading...</div>;
+  // }
 };
 
-const mapStateToProps = state => {
-  return {
-    statuses: state.statuses
-  };
-};
+// const mapStateToProps = (state, props) => {
+//   return {
+//     user: state.users.all.filter(user => user.id === props.status.userId)[0]
+//   };
+// };
 
-export default connect(mapStateToProps)(Status);
+export default connect()(Status);

@@ -5,11 +5,13 @@ import SideNav from "./components/navigation/SideNav";
 import Misc from "./components/misc/Misc";
 import { connect } from "react-redux";
 import { fetchStatuses } from "./store/statuses/actions";
+import { getUsers } from "./store/users/actions";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchStatuses());
+    this.props.dispatch(getUsers());
   }
 
   render() {
@@ -30,10 +32,4 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    statuses: state.statuses
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);
