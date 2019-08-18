@@ -3,7 +3,7 @@ import { Jumbotron, Container } from "reactstrap";
 
 const Misc = () => {
   return (
-    <div className="mt-2">
+    <div className="m-3">
       <Jumbotron fluid>
         <Container fluid>
           <h1 className="display-3">Miscellaneous</h1>

@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Media, Button } from "reactstrap";
+import {
+  Card,
+  CardTitle,
+  Row,
+  Col,
+  CardImg,
+  Button,
+  CardBody
+} from "reactstrap";
 import { connect } from "react-redux";
 // import { deleteStatus } from "../../store/users/actions";
 import Moment from "react-moment";
@@ -8,28 +16,32 @@ const Status = props => {
   console.log("Status Props", props);
   return (
     <div className="container">
-      <Media>
-        <Media left href="https://via.placeholder.com/100" />
-        <Media
-          object
-          src="https://via.placeholder.com/100"
-          alt="Generic placeholder image"
-        />
-        <Media body>
-          <Media className="d-flex">
-            <div>
+      <Card className="mt-2">
+        <Row>
+          <Col sm="3">
+            <CardImg
+              top
+              style={{ width: 150 }}
+              src="https://via.placeholder.com/100"
+              alt="IMG"
+            />
+          </Col>
+          <Col>
+            <CardTitle>
               <div>User Name</div>
-              <Moment className="sm">{props.status.createdAt}</Moment>
-            </div>
-          </Media>
-          <div className="d-flex">
-            <div className="content">{props.status.content}</div>
-          </div>
-          <Button className="btn-sm" color="primary">
-            Reply
-          </Button>
-        </Media>
-      </Media>
+              <Moment format="MMMM Do YYYY, h:mm:ss a">
+                {props.status.createdAt}
+              </Moment>
+            </CardTitle>
+            <CardBody>
+              <div className="content">{props.status.content}</div>
+              <Button className="btn-sm" color="primary">
+                Reply
+              </Button>
+            </CardBody>
+          </Col>
+        </Row>
+      </Card>
     </div>
   );
 };
