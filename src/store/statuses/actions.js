@@ -11,10 +11,9 @@ import {
 export const fetchStatuses = () => {
   return dispatch => {
     axios
-      .get("http://localhost:8082/api/statuses")
+      .get("http://localhost:8082/api/sosh/statuses")
       .then(res => {
         const statuses = res.data;
-        console.log("STATUSES", statuses);
         dispatch({
           type: GET_STATUSES_SUCCESS,
           payload: statuses
@@ -32,9 +31,8 @@ export const fetchStatuses = () => {
 export const postStatus = status => {
   return dispatch => {
     axios
-      .post(`http://localhost:8082/api/statuses/`, status)
+      .post(`http://localhost:8082/api/sosh/statuses/`, status)
       .then(res => {
-        console.log("PAYLOAD: ", res.data);
         dispatch({
           type: POST_STATUS_SUCCESS,
           payload: res.data

@@ -8,10 +8,10 @@ const SideNav = () => {
         <p>Navigation, Yo</p>
         <Nav vertical>
           <NavItem>
-            <NavLink href="#">Home</NavLink>
+            <NavLink href="/homepage">Home</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">Profile</NavLink>
+            <NavLink href="/profile/1">Profile</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="#">Friends</NavLink>

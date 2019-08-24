@@ -6,7 +6,6 @@ export const getUsers = () => {
     axios
       .get(`http://localhost:8082/api/users`)
       .then(res => {
-        console.log("Hello World");
         const users = res.data;
         dispatch({
           type: types.GET_USERS_SUCCESS,
