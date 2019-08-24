@@ -4,6 +4,7 @@ import TopNav from "./components/navigation/TopNav";
 import SideNav from "./components/navigation/SideNav";
 import Misc from "./components/misc/Misc";
 import Profile from "./components/profile/Profile";
+import FriendsList from "./components/friends/FriendsList";
 
 import { connect } from "react-redux";
 import { fetchStatuses } from "./store/statuses/actions";
@@ -28,6 +29,7 @@ class App extends React.Component {
                 {/* <Route exact path="/" component={Login} /> */}
                 <Route path="/homepage" component={Dashboard} />
                 <Route path="/profile/:user_id" component={Profile} />
+                <Route path="/friends" component={FriendsList} />
               </Switch>
               <Misc />
             </div>

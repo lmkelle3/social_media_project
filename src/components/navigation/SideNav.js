@@ -14,7 +14,7 @@ const SideNav = () => {
             <NavLink href="/profile/1">Profile</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">Friends</NavLink>
+            <NavLink href="/friends">Friends</NavLink>
           </NavItem>
           <NavItem>
             <NavLink disabled href="#">

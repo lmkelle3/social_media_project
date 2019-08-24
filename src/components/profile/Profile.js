@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 const Profile = props => {
   if (props.user) {
     return (
-      <div>
+      <div className="mt-2">
         <Container>
           <Card>
             <Col>
