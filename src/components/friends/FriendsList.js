@@ -1,16 +1,25 @@
 import React from "react";
+import Friends from "./Friends";
 import { connect } from "react-redux";
+import { ListGroup } from "reactstrap";
 import { withRouter } from "react-router-dom";
 
 const FriendsList = props => {
-  // console.log("FRIENDS PROPS:", props);
-  // let listOfStatuses = props.statuses.map(status => (
-  //   <Status key={status.id} status={status} />
-  // ));
-  return "My Freaking Friends";
+  //   if (props.friends) {
+  let listOfFriends = props.friends.map(friend => {
+    <Friends key={friend.id} friend={friend} />;);
+  }
+  return <ListGroup>{listOfFriends}</ListGroup>;
   //   } else {
   //     return <div> Sorry Fam... </div>;
   //   }
-  // };
 };
-export default withRouter(connect()(FriendsList));
+
+const mapStateToProps = (state, props) => {
+  return {
+    // user: state.users.filter(user => user.id === props.friend-requests.)[0]
+    friends: state.friends
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(FriendsList));

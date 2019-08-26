@@ -9,12 +9,14 @@ import FriendsList from "./components/friends/FriendsList";
 import { connect } from "react-redux";
 import { fetchStatuses } from "./store/statuses/actions";
 import { getUsers } from "./store/users/actions";
+import { fetchFriends } from "./store/friends/actions";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchStatuses());
     this.props.dispatch(getUsers());
+    this.props.dispatch(fetchFriends());
   }
 
   render() {
