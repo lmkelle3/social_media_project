@@ -6,14 +6,16 @@ import {
   Col,
   CardImg,
   Button,
-  CardBody
+  CardBody,
+  NavItem,
+  NavLink
 } from "reactstrap";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
 
-const Status = props => {
-  if (props.user) {
+const ConvoListItem = props => {
+  if (props.messages) {
     return (
       <div className="container">
         <Card className="mt-2">
@@ -36,15 +38,17 @@ const Status = props => {
                   </h5>
                 </div>
                 <Moment format="MMMM Do YYYY, h:mm:ss a">
-                  {props.status.createdAt}
+                  {props.messages.created_at}
                 </Moment>
               </CardTitle>
               <CardBody>
-                <div className="content">{props.status.content}</div>
-                <Button className="btn-sm" color="primary">
-                  Reply
-                </Button>
+                <div>{props.messages.subject}</div>
               </CardBody>
+              <NavItem>
+                <NavLink href="/conversations">
+                  <Button>See Conversations</Button>
+                </NavLink>
+              </NavItem>
             </Col>
           </Row>
         </Card>
@@ -57,7 +61,8 @@ const Status = props => {
 
 const mapStateToProps = (state, props) => {
   return {
-    user: state.users.filter(user => user.id === props.status.user_id)[0]
+    messages: state.messages,
+    user: state.users.filter(user => user.id === props.status.userId)[0]
   };
 };
-export default connect(mapStateToProps)(Status);
+export default connect(mapStateToProps)(ConvoListItem);

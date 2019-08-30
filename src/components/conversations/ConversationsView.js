@@ -1,5 +1,5 @@
 import React from "react";
-import StatusList from "../dashboard/StatusList";
+import ConversationsList from "./ConversationsList";
 import {
   Container,
   Card,
@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 
-const Profile = props => {
+const ConversationsView = props => {
   if (props.user) {
     return (
       <div className="mt-2">
@@ -29,12 +29,11 @@ const Profile = props => {
               </CardTitle>
               <CardBody>
                 <p className="lead">{props.user.company}</p>
-                <button>Add Friend</button>
                 <button>Start Conversation</button>
               </CardBody>
             </Col>
           </Card>
-          <StatusList />
+          <ConversationsList />
         </Container>
       </div>
     );
@@ -43,11 +42,11 @@ const Profile = props => {
   }
 };
 
-const mapStateToProps = (state, props) => {
-  return {
-    user: state.users.filter(
-      user => user.id === Number(props.match.params.user_id)
-    )[0]
-  };
-};
-export default connect(mapStateToProps)(Profile);
+// const mapStateToProps = (state, props) => {
+//   return {
+//     user: state.users.filter(
+//       user => user.id === Number(props.match.params.user_id)
+//     )[0]
+//   };
+// };
+export default connect()(ConversationsView);

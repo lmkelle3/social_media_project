@@ -6,6 +6,7 @@ import { ListGroup } from "reactstrap";
 
 const StatusList = props => {
   if (props.statuses) {
+    console.log("STATUS PROPS:", props);
     let listOfStatuses = props.statuses.map(status => (
       <Status key={status.id} status={status} />
     ));
@@ -17,25 +18,17 @@ const StatusList = props => {
 
 const mapStateToProps = (state, props) => {
   let currentPage = props.location.pathname;
-  let theStatuses = [];
 
-  switch (currentPage) {
-    case "/homepage":
-      theStatuses = state.statuses.filter(
-        status => status.user_id == props.match.params.user_id
-      );
-      break;
-    case `/profile/${props.match.params.user_id}`:
-      // return;
-      theStatuses = state.statuses.filter(
-        status => status.userId == props.match.params.user_id
-      );
-      break;
-    default:
-      return;
+  if (currentPage === "/homepage") {
+    return {
+      statuses: state.statuses
+    };
+  } else if (currentPage === `/profile/${props.match.params.user_id}`) {
+    return {
+      statuses: state.statuses.filter(status => {
+        return status.user_id === Number(props.match.params.user_id);
+      })
+    };
   }
-  return {
-    statuses: theStatuses
-  };
 };
 export default withRouter(connect(mapStateToProps)(StatusList));

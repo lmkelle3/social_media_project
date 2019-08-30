@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Card, Nav, NavItem, NavLink } from "reactstrap";
 
 const SideNav = () => {
@@ -11,10 +11,13 @@ const SideNav = () => {
             <NavLink href="/homepage">Home</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/profile/1">Profile</NavLink>
+            <NavLink href="/profile/16">Profile</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="/friends">Friends</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/conversations">Conversations</NavLink>
           </NavItem>
           <NavItem>
             <NavLink disabled href="#">
