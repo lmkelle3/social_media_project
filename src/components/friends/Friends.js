@@ -49,7 +49,7 @@ const Friends = props => {
 const mapStateToProps = (state, props) => {
   return {
     friends: state.friends,
-    user: state.users.filter(user => user.id === props.friends.requesteeId)
+    user: state.users.all.filter(user => user.id === props.friends.requesteeId)
   };
 };
 export default connect(mapStateToProps)(Friends);

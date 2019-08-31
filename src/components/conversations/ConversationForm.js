@@ -28,7 +28,6 @@ class ConversationForm extends Component {
           </div>
           <InputGroup>
             <Input
-              addonType="append"
               id="newStatus"
               name="newStatus"
               //   value={this.state.newStatus}

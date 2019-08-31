@@ -1,14 +1,13 @@
 import React from "react";
-import ConversationsList from "./ConversationForm";
+import ConversationsList from "./ConversationsList";
 import ConversationsView from "./ConversationsView";
-import ConversationForm from "./ConversationsList";
 
-const Conversations = () => {
+const Conversations = props => {
+  let other_person = props.match ? Number(props.match.params.id) : 0;
   return (
     <div className="conversations">
-      <ConversationsList />
-      <ConversationsView />
-      <ConversationForm />
+      <ConversationsList other_person={other_person} />
+      <ConversationsView other_person={other_person} />
     </div>
   );
 };

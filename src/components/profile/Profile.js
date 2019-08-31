@@ -45,7 +45,7 @@ const Profile = props => {
 
 const mapStateToProps = (state, props) => {
   return {
-    user: state.users.filter(
+    user: state.users.all.filter(
       user => user.id === Number(props.match.params.user_id)
     )[0]
   };

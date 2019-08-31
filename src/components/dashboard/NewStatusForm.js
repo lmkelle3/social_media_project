@@ -27,11 +27,6 @@ class NewStatusForm extends Component {
               <h4 className="mt-2">Add New Status</h4>
             </Label>
           </div>
-          {/* <span className="d-flex"> */}
-          {/* <div> */}
-          {/* <Input
-                type="text"
-              /> */}
           <InputGroup>
             <Input
               id="newStatus"

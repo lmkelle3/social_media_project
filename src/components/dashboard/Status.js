@@ -57,7 +57,7 @@ const Status = props => {
 
 const mapStateToProps = (state, props) => {
   return {
-    user: state.users.filter(user => user.id === props.status.user_id)[0]
+    user: state.users.all.filter(user => user.id === props.status.user_id)[0]
   };
 };
 export default connect(mapStateToProps)(Status);

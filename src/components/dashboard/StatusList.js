@@ -6,7 +6,6 @@ import { ListGroup } from "reactstrap";
 
 const StatusList = props => {
   if (props.statuses) {
-    console.log("STATUS PROPS:", props);
     let listOfStatuses = props.statuses.map(status => (
       <Status key={status.id} status={status} />
     ));
