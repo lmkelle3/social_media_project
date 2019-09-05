@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log("MESSAGES STATE:", state);
   switch (action.type) {
     case types.FETCH_MESSAGES_SUCCESS:
       return { ...state, all: action.payload };

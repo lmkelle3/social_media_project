@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Form, Button, Input, InputGroup, Label } from "reactstrap";
+import { Form, Button, Input, InputGroup, Label, Row, Col } from "reactstrap";
 
 class ConversationForm extends Component {
   state = {
-    newConvo: ""
+    newMessage: ""
   };
 
   handleChange = e => {
@@ -14,7 +14,13 @@ class ConversationForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // this.props.dispatch(postStatus({ content: this.state.newStatus }));
+    const { newMessageTo, newMessage, messages } = this.state;
+    this.setState({
+      messages: [...messages, newMessage, newMessageTo],
+      newMessageTo: { content: this.state.newMessageTo },
+      newMessage: { content: this.state.newMessage }
+    });
+    // this.props.dispatch(postMessage({ content: this.state.newMessage }));
   };
 
   render() {
@@ -23,24 +29,40 @@ class ConversationForm extends Component {
         <Form onSubmit={this.handleSubmit}>
           <div>
             <Label>
-              <h4 className="mt-2">Add New Conversation</h4>
+              <h4 className="mt-2">Start New Conversation</h4>
             </Label>
           </div>
           <InputGroup>
-            <Input
-              id="newStatus"
-              name="newStatus"
-              //   value={this.state.newStatus}
-              onChange={this.handleChange}
-            />
-            <Button
-              //   disabled={!this.state.newStatus}
-              className="btn-sm"
-              type="submit"
-              color="primary"
-            >
-              Send
-            </Button>
+            <Col>
+              <Row>
+                <p>To:</p>
+                <Input
+                  id="newMessageTo"
+                  name="newMessageTo"
+                  value={this.state.newMessageTo}
+                  onChange={this.handleChange}
+                />
+              </Row>
+              <Row>
+                <p className="mt-2">Body:</p>
+                <Input
+                  id="newMessage"
+                  name="newMessage"
+                  value={this.state.newMessage}
+                  onChange={this.handleChange}
+                />
+              </Row>
+              <Row>
+                <Button
+                  disabled={!this.state.newMessage}
+                  className="btn-sm mt-2"
+                  type="submit"
+                  color="primary"
+                >
+                  Send
+                </Button>
+              </Row>
+            </Col>
           </InputGroup>
         </Form>
       </div>

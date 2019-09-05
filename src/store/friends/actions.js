@@ -7,7 +7,6 @@ export const fetchFriends = () => {
       .get("http://localhost:8082/api/sosh/friend-requests")
       .then(res => {
         const friends = res.data;
-        console.log("DATA:", friends);
         dispatch({
           type: GET_FRIENDS_SUCCESS,
           payload: friends

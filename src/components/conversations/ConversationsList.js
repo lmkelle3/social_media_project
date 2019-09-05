@@ -1,8 +1,9 @@
 import React from "react";
 import ConvoListItem from "./ConvoListItem";
+
 import { connect } from "react-redux";
-import { ListGroup } from "reactstrap";
-import { withRouter } from "react-router-dom";
+import { ListGroup, Col, Row, Button } from "reactstrap";
+import { withRouter, Link } from "react-router-dom";
 
 const ConversationsList = props => {
   if (props.conversations) {
@@ -11,8 +12,14 @@ const ConversationsList = props => {
     ));
     return (
       <div>
-        <h3 className="mt-2">Conversations List</h3>
-        <ListGroup>{listOfConvos}</ListGroup>
+        <Col>
+          <Row>
+            <h3 className="mt-2">Conversations List</h3>
+          </Row>
+          <Row>
+            <ListGroup>{listOfConvos}</ListGroup>
+          </Row>
+        </Col>
       </div>
     );
   } else {
@@ -22,9 +29,9 @@ const ConversationsList = props => {
 
 const mapStateToProps = (state, props) => {
   return {
-    conversations: state.conversations.reduce((acc, msg) => {
+    conversations: state.messages.all.reduce((acc, msg) => {
       if (!acc.includes(msg.recipient_id) && !acc.includes(msg.sender_id)) {
-        if (msg.recipient_id === Number(props.match.params.user_id)) {
+        if (msg.recipient_id === state.users.loggedInUser.id) {
           acc.push(msg.sender_id);
         } else {
           acc.push(msg.recipient_id);

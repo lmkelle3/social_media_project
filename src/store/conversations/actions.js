@@ -7,7 +7,6 @@ export const fetchConvos = () => {
       .get("http://localhost:8082/api/sosh/messages")
       .then(res => {
         const conversations = res.data;
-        console.log("CONVERSATIONS DATA:", conversations);
         dispatch({
           type: GET_CONVOS_SUCCESS,
           payload: conversations
@@ -21,3 +20,21 @@ export const fetchConvos = () => {
       });
   };
 };
+// export const postStatus = status => {
+//   return dispatch => {
+//     axios
+//       .post(`http://localhost:8082/api/sosh/statuses/`, status)
+//       .then(res => {
+//         dispatch({
+//           type: SEND_MESSAGE_SUCCESS,
+//           payload: res.data
+//         });
+//       })
+//       .catch(err => {
+//         dispatch({
+//           type: SEND_MESSAGE_FAILED,
+//           payload: err
+//         });
+//       });
+//   };
+// };

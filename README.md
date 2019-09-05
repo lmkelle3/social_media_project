@@ -1,68 +1,100 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```# Sosh (Social Media...streamlined)
 
-## Available Scripts
 
-In the project directory, you can run:
+## **DISCLAIMER: This project is pretty big. Start it at your own risk. Also, if there are any user stories or components missing, please send a pull request and I'll update the image!**
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Overview
+Insert some long, heavy story here about how you realized that every other social media outlet is terrible and you want to build your own.
+## Component Tree
+![component tree](./images/component-tree.png)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+## User stories
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Landing Page
+- As a user, I see a form that will allow me to either log in or sign up
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Dashboard Page
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+#### Layout
+- As a user, I see a form to add a new status at the top of the page
+- As a user, below the new status form, I see a list of statuses from all of my friends
+- As a user, I see the page in three sections. The side-nav menu, the main status area, and the misc are, respectively, from left to right
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Add Status Form
+- As a user, I see an input field, as well as a submit button
+- As a user, when successfully add a new status, I see a message shown below the form stating that I have successfully added a new status
+- As a user, if the new status input field is empty, the button to submit the form is disabled
 
-### `npm run eject`
+#### Individual Status
+- As a user, in the left section, I see the status owner's profile photo
+- As a user, in the middle section, I see the status owner's name above the status content
+- As a user, in the right section, I see the date/time that the status was posted by the status owner
+- As a user, if I click on the status owner's name, it will take me to their profile page
+- As a user, if I would like to see the comments left on that person's status, I would click the "View Comments" button/link/whatever
+- As a user, I am able to leave comments on my friends' statuses
+- As a user, if I want to leave a comment on a friend's status, I will fill out the input and submit button at the bottom on the "View Comments" section
+- As a user, if the new comment input field is empty, the submit button is disabled
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Conversations Page
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Layout
+- As a user, I see three sections on the page. The sidenav, the conversation list, and the conversation view (where the messages show), respectively, from left to right
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Conversation List and Conversation List Item
+- As a user, I see each conversation list item listed from top to bottom, sorted by most-recent first
+- As a user, in each conversation list item, I see a thumbnail of the profile photo and the friend's name, respectively, from left to right
+- As a user, when I click on the conversation list item, that conversation shows in the conversation view section to the right
+- As a user, above the conversation list at the top, I see a button that says "Start New Conversation"
+- As a user, if I click the button that says "Start New Conversation", a New Conversation Form will appear to the right, replacing the conversation view area
+- As a user, if there is a New Conversation Form visible and an existing conversation is clicked, the existing conversation will replace the new conversation form.
 
-## Learn More
+#### Conversation View and Message
+- As a user, I see each conversation message listed from top to bottom, the most recent message being at the bottom and each previous message being visible above that one
+- As a user, in each conversation message, I see a profile photo and the message content beside each other
+- As a user, at the bottom of the conversation view, there is an input and a submit button that will allow me to add a message to the list
+- As a user, when the input field for the new message form is empty, the submit button is disabled
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### New Conversation Form
+- As a user, I can see two fields. The friend I am starting the conversation with and the message I would like to send
+- As a user, I can only start conversations with friends, so when I type someone's name in the friend search field, it will only search the people that I am friends with
+- As a user, when any of the input fields on the form are empty or invalid for some reason, the submit button is disabled
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### Manage Friends Page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+#### Friends List
+- As a user, I can see the list of friend sorted from top to bottom, most recent friend added at the top
+- As a user, I can search for specific friends using the search bar located above the list of friends
+- As a user, if I search for a friend that is an existing user, but is not my friend yet, a link/button/whatever will appear asking if I would like to send a friend request to that person
+- As a user if I search for a friend that is not an existing user, a link/button/whatever will appear asking if I would like to send an email invite to that person to sign up for Sosh
 
-### Analyzing the Bundle Size
+#### Friends List Item
+- As a user, I can see three sections: The friend's profile photo, the friend's name and added date, and the unfriend button, respectively from left to right
+- As a user, I am able to click on a friend's name to route me to their profile page
+- As a user, I am able to unfriend someone via a button on the right side of the friends list item
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+### Friends/User Profile Page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+#### Layout
+- As a user, I can see three sections, organized vertically
+- As a user, in the top section, I see that user's banner, profile picture, and name
+- As a user, if I am not friends with that user, I see a button on the bottom of the top section that asks me if I would like to send that user a friend request
+- As a user, if I am friends with that user, I see a button on the bottom of the top section that asks me if I would like to unfriend that user
+- As a user, if I am friends with that user, I see a button on the bottom of the top section that asks me if I would like to start or continue a conversation with that user
+- As a user, in the middle section, I see the that user's basic info
+- As a user, in the bottom section, I see a list of that user's statuses
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### User Settings Page
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#### Layout
+- As a user, I can see three sections containing corresponding inputs for section from the profile page from top to bottom
+- As a user, in the top section, I can add/update a banner photo, my profile photo, and my visible name
+- As a user, in the middle section, I can update all of the basic info
+- As a user, in the bottom section, I can update my email address or delete my account
+```

@@ -2,12 +2,28 @@ import React from "react";
 import ConversationsList from "./ConversationsList";
 import ConversationsView from "./ConversationsView";
 
+import { Link } from "react-router-dom";
+import { Row, Col, Button } from "reactstrap";
+
 const Conversations = props => {
   let other_person = props.match ? Number(props.match.params.id) : 0;
   return (
     <div className="conversations">
-      <ConversationsList other_person={other_person} />
-      <ConversationsView other_person={other_person} />
+      <Row>
+        <Col>
+          <Row>
+            <div className="mt-2">
+              <Button color="light">
+                <Link to={`/conversations`}>+ Start New Conversation</Link>
+              </Button>
+            </div>
+          </Row>
+          <ConversationsList other_person={other_person} />
+        </Col>
+        <Col>
+          <ConversationsView other_person={other_person} />
+        </Col>
+      </Row>
     </div>
   );
 };

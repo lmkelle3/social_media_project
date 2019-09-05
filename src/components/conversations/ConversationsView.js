@@ -1,37 +1,42 @@
 import React from "react";
 import MessageItem from "./MessageItem";
-import { ListGroup } from "reactstrap";
+import { ListGroup, Row, Col } from "reactstrap";
 import { connect } from "react-redux";
-import ConversationsList from "./ConversationsList";
+import ConversationForm from "./ConversationForm";
 
 const ConversationsView = props => {
-  let listOfMessages =
-    props.messages && props.messages.length
-      ? props.messages.map(message => (
-          <MessageItem key={message.id} message={message} />
-        ))
-      : [];
+  let listOfMessages = props.messages.map(message => (
+    <MessageItem key={message.id} message={message} />
+  ));
 
-  console.log("LIST OF MESSAGES:", listOfMessages);
-  return (
-    <div>
-      <ListGroup>{listOfMessages}</ListGroup>
-    </div>
-  );
+  if (props.other_person) {
+    return (
+      <div className="mt-2">
+        <Col>
+          <Row>
+            <h3>Conversation View</h3>
+          </Row>
+          <ListGroup>{listOfMessages}</ListGroup>
+        </Col>
+      </div>
+    );
+  } else {
+    return <ConversationForm />;
+  }
 };
 
 const mapStateToProps = (state, props) => {
-  console.log("CVSTATE:", state);
-  console.log("CVPROPS:", props);
-
   return {
-    messages: props
-      ? state.messages.all.filter(
-          message =>
-            message.sender_id === props.other_person ||
-            message.recipient_id === props.other_person
-        )
-      : []
+    messages: state.messages.all.filter(
+      message =>
+        message.sender_id === props.other_person ||
+        message.recipient_id === props.other_person
+    )
+    // sender: state.messages.all.forEach(message => {
+    //   return message.sender_id === props.other_person
+    //     ? props.otherUser.name
+    //     : state.loggedInUser.name;
+    // })
   };
 };
 export default connect(mapStateToProps)(ConversationsView);

@@ -1,13 +1,29 @@
 import React from "react";
-import { ListGroupItem } from "reactstrap";
+import { ListGroupItem, Row, Col } from "reactstrap";
 
 const MessageItem = props => {
   return (
-    <ListGroupItem>
-      <div>From: {props.message.sender_id}</div>
-      <div>{props.message.body}</div>
-    </ListGroupItem>
+    <div>
+      <ListGroupItem>
+        <Col>
+          <Row>
+            <h5>From: </h5> {props.sender}
+          </Row>
+          <div>{props.message.body}</div>
+        </Col>
+      </ListGroupItem>
+    </div>
   );
 };
+
+// const mapStateToProps = (state, props) => {
+//   return {
+
+//   }
+//   ||
+//   message.recipient_id === props.other_person
+//     )
+//   };
+// };
 
 export default MessageItem;

@@ -13,6 +13,7 @@ import { fetchFriends } from "./store/friends/actions";
 import { fetchConvos } from "./store/conversations/actions";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { fetchMessages } from "./store/messages/actions";
+import ConversationForm from "./components/conversations/ConversationForm";
 
 class App extends React.Component {
   componentDidMount() {
@@ -36,12 +37,12 @@ class App extends React.Component {
                 <Route path="/homepage" component={Dashboard} />
                 <Route path="/profile/:user_id" component={Profile} />
                 {/* <Route path="/friends" component={FriendsList} /> */}
-                <Route exact path="/conversations" component={Conversations} />
                 <Route
                   exact
                   path="/conversations/:id"
                   component={Conversations}
                 />
+                <Route exact path="/conversations" component={Conversations} />
               </Switch>
             </div>
           </header>
