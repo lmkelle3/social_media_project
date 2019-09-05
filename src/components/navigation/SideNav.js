@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, Nav, NavItem, NavLink } from "reactstrap";
+import { Card, Nav, NavItem } from "reactstrap";
+import { NavLink } from "react-router-dom";
 
 const SideNav = () => {
   return (
@@ -8,21 +9,16 @@ const SideNav = () => {
         <p>Navigation, Yo</p>
         <Nav vertical>
           <NavItem>
-            <NavLink href="/homepage">Home</NavLink>
+            <NavLink to="/homepage">Home</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/profile/16">Profile</NavLink>
+            <NavLink to="/profile/16">Profile</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/friends">Friends</NavLink>
+            <NavLink to="/friends">Friends</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/conversations">Conversations</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink disabled href="#">
-              Photos
-            </NavLink>
+            <NavLink to="/conversations">Conversations</NavLink>
           </NavItem>
         </Nav>
       </Card>

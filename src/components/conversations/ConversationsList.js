@@ -2,8 +2,8 @@ import React from "react";
 import ConvoListItem from "./ConvoListItem";
 
 import { connect } from "react-redux";
-import { ListGroup, Col, Row, Button } from "reactstrap";
-import { withRouter, Link } from "react-router-dom";
+import { ListGroup, Col, Row } from "reactstrap";
+import { withRouter } from "react-router-dom";
 
 const ConversationsList = props => {
   if (props.conversations) {
