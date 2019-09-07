@@ -1,7 +1,7 @@
 import React from "react";
 import Moment from "react-moment";
 import { connect } from "react-redux";
-import { ListGroupItem, Row, Col } from "reactstrap";
+import { ListGroupItem, Row, Col, CardImg } from "reactstrap";
 
 const MessageItem = props => {
   const user = props.users.all.filter(
@@ -12,14 +12,24 @@ const MessageItem = props => {
       <ListGroupItem>
         <Col>
           <Row>
-            <h5>From: </h5>
-            <div className="ml-1">{user.name}</div>
-          </Row>
-          <Row>
-            <div className="mr-1">Sent on:</div>
-            <Moment format="MMMM Do YYYY, h:mm:ss a">
-              {props.message.created_at}
-            </Moment>
+            <CardImg
+              top
+              style={{ width: 100 }}
+              src={user.photo_url}
+              alt="IMG"
+            />
+            <Col>
+              <Row>
+                <h5 className="ml-3">From: </h5>
+                <div className="ml-1">{user.name}</div>
+              </Row>
+              <Row>
+                <div className="mr-1 ml-3">Sent on:</div>
+                <Moment format="MMMM Do YYYY, h:mm:ss a">
+                  {props.message.created_at}
+                </Moment>
+              </Row>
+            </Col>
           </Row>
           <Row>
             <div className="mt-2">{props.message.body}</div>
