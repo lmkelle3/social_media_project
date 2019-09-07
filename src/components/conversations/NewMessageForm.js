@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Form, Input, Button } from "reactstrap";
 import { addMessage } from "../../store/messages/actions";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 
 class NewMessageForm extends Component {
   state = {
@@ -17,21 +18,22 @@ class NewMessageForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.addMessage({
+      recipient_id: Number(this.props.match.params.id),
       sender_id: this.props.loggedInUser.id,
-      recipient_id: this.props.other_person,
-      body: this.state.body
+      body: this.state.newMessage
     });
 
     this.setState({ newMessage: "" });
   };
 
   render() {
+    console.log(this.state);
     return (
       <Form inline onSubmit={this.handleSubmit}>
         <Input
           type="text"
           onChange={this.handleChange}
-          name="body"
+          name="newMessage"
           placeholder="New Message"
           value={this.state.newMessage}
         />
@@ -54,4 +56,4 @@ const mapStateToProps = (state, props) => {
 export default connect(
   mapStateToProps,
   { addMessage }
-)(NewMessageForm);
+)(withRouter(NewMessageForm));

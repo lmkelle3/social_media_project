@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 const ConversationsView = props => {
-  if (props.messages) {
+  if (props.messages.length) {
     // let filteredMessages = [];
 
     // const loggedInUser = props.loggedInUser;
@@ -45,16 +45,23 @@ const ConversationsView = props => {
       </div>
     );
   } else {
-    return <ConversationForm />;
+    return (
+      <div>
+        <ConversationForm />
+      </div>
+    );
   }
 };
 
 const mapStateToProps = (state, props) => {
+  console.log("OP", props.other_person);
   return {
     messages: state.messages.all.filter(
       message =>
-        message.sender_id === props.other_person ||
-        message.recipient_id === props.other_person
+        (message.sender_id == Number(props.other_person) &&
+          message.recipient_id == state.users.loggedInUser.id) ||
+        (message.recipient_id == Number(props.other_person) &&
+          message.sender_id == state.users.loggedInUser.id)
     ),
     users: state.users.all,
     loggedInUser: state.users.loggedInUser

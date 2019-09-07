@@ -12,7 +12,7 @@ import { getUsers } from "./store/users/actions";
 import { fetchFriends } from "./store/friends/actions";
 import { fetchConvos } from "./store/conversations/actions";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { fetchMessages, addMessage } from "./store/messages/actions";
+import { fetchMessages } from "./store/messages/actions";
 
 class App extends React.Component {
   componentDidMount() {
@@ -21,7 +21,6 @@ class App extends React.Component {
     this.props.dispatch(fetchFriends());
     this.props.dispatch(fetchConvos());
     this.props.dispatch(fetchMessages(this.props.loggedInUser.id));
-    this.props.dispatch(addMessage());
   }
 
   render() {

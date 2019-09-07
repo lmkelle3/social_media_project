@@ -14,11 +14,11 @@ class ConversationForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { newConvoTo, newConvo, messages } = this.state;
-    this.setState({
-      messages: [...messages, newConvo, newConvoTo],
-      newConvoTo: { content: this.state.newConvoTo },
-      newMessage: { content: this.state.newConvo }
+
+    this.props.addConvo({
+      sender_id: this.props.loggedInUser.id,
+      recipient_id: Number(this.props.other_person),
+      newConvo: { content: [this.state.newConvoTo, this.state.newConvo] }
     });
     // this.props.dispatch(postMessage({ content: this.state.newMessage }));
   };
@@ -47,8 +47,8 @@ class ConversationForm extends Component {
               <Row>
                 <p>To:</p>
                 <Input
-                  id="newMessageTo"
-                  name="newMessageTo"
+                  id="newConvoTo"
+                  name="newConvoTo"
                   value={this.state.newConvoTo}
                   onChange={this.handleChange}
                 />
@@ -56,15 +56,15 @@ class ConversationForm extends Component {
               <Row>
                 <p className="mt-2">Body:</p>
                 <Input
-                  id="newMessage"
-                  name="newMessage"
+                  id="newConvo"
+                  name="newConvo"
                   value={this.state.newConvo}
                   onChange={this.handleChange}
                 />
               </Row>
               <Row>
                 <Button
-                  disabled={!this.state.newMessage && !this.state.newMessageTo}
+                  disabled={!this.state.newConvo && !this.state.newConvoTo}
                   className="btn-sm mt-2"
                   type="submit"
                   color="primary"
