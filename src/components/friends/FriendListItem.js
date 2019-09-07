@@ -1,12 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { ListGroupItem, Row, Col, CardImg, Button } from "reactstrap";
 import { connect } from "react-redux";
 
-const ConvoListItem = props => {
-  return (
-    <div>
-      <Link to={`/conversations/${props.otherUser.id}`}>
+const FriendListItem = props => {
+  const otherUser = props.users.find(
+    user => user.id === props.friend.requesteeId
+  );
+  if (props.friend) {
+    return (
+      <div>
         <ListGroupItem>
           <Col>
             <Row>
@@ -14,12 +16,12 @@ const ConvoListItem = props => {
                 <CardImg
                   top
                   style={{ width: 100 }}
-                  src={props.otherUser.photo_url}
+                  src={otherUser.photo_url}
                   alt="IMG"
                 />
               </Col>
               <Col>
-                <h5>{props.otherUser.name}</h5>
+                <h5>{otherUser.name}</h5>
               </Col>
             </Row>
             <div className="mt-2 ml-5">
@@ -29,15 +31,19 @@ const ConvoListItem = props => {
             </div>
           </Col>
         </ListGroupItem>
-      </Link>
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return <div> You suck...</div>;
+  }
 };
 
 const mapStateToProps = (state, props) => {
   return {
-    otherUser: state.users.all.find(user => user.id === props.other_user_id)
+    currentUser: state.currentUser,
+    friends: state.friends.all,
+    users: state.users.all
   };
 };
 
-export default connect(mapStateToProps)(ConvoListItem);
+export default connect(mapStateToProps)(FriendListItem);

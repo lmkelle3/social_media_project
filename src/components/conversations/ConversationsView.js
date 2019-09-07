@@ -1,5 +1,6 @@
 import React from "react";
 import MessageItem from "./MessageItem";
+import NewMessageForm from "./NewMessageForm";
 import { ListGroup, Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 import ConversationForm from "./ConversationForm";
@@ -8,15 +9,19 @@ const ConversationsView = props => {
   let listOfMessages = props.messages.map(message => (
     <MessageItem key={message.id} message={message} />
   ));
-
-  if (props.other_person) {
+  if (props.messages) {
     return (
       <div className="mt-2">
         <Col>
           <Row>
             <h3>Conversation View</h3>
           </Row>
-          <ListGroup>{listOfMessages}</ListGroup>
+          <Row>
+            <ListGroup>{listOfMessages}</ListGroup>
+          </Row>
+          <Row>
+            <NewMessageForm />
+          </Row>
         </Col>
       </div>
     );
@@ -32,11 +37,7 @@ const mapStateToProps = (state, props) => {
         message.sender_id === props.other_person ||
         message.recipient_id === props.other_person
     )
-    // sender: state.messages.all.forEach(message => {
-    //   return message.sender_id === props.other_person
-    //     ? props.otherUser.name
-    //     : state.loggedInUser.name;
-    // })
   };
 };
+
 export default connect(mapStateToProps)(ConversationsView);

@@ -1,55 +1,22 @@
 import React from "react";
-import {
-  Card,
-  CardTitle,
-  Row,
-  Col,
-  CardImg,
-  Button,
-  CardBody
-} from "reactstrap";
+import FriendsList from "./FriendsList";
+
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Row, Col } from "reactstrap";
 
 const Friends = props => {
   return (
-    <div className="container">
-      <Card className="mt-2">
-        <Row>
-          <Col sm="3">
-            <CardImg
-              top
-              style={{ width: 120 }}
-              src={props.user.photo_url}
-              alt="IMG"
-            />
-          </Col>
-          <Col>
-            <CardTitle>
-              <div>
-                <h5>
-                  <Link to={`/profile/${props.user.id}`}>
-                    {props.user.name}
-                  </Link>
-                </h5>
-              </div>
-            </CardTitle>
-            <CardBody>
-              <Button className="btn-sm" color="primary">
-                Delete Friend
-              </Button>
-            </CardBody>
-          </Col>
-        </Row>
-      </Card>
+    <div className="conversations">
+      <Row>
+        <Col>
+          <FriendsList />
+        </Col>
+        <Col>
+          <div>hello world</div>
+        </Col>
+      </Row>
     </div>
   );
 };
 
-const mapStateToProps = (state, props) => {
-  return {
-    friends: state.friends,
-    user: state.users.all.filter(user => user.id === props.friends.requesteeId)
-  };
-};
-export default connect(mapStateToProps)(Friends);
+export default connect()(Friends);

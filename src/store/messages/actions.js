@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchMessages = user_id => {
   return dispatch => {
     axios
-      .get(`http://localhost:8082/api/sosh/users/${user_id}/messages`)
+      .get(`http://localhost:8082/api/sosh/messages`)
       .then(res => {
         const messages = res.data;
         dispatch({
@@ -15,6 +15,26 @@ export const fetchMessages = user_id => {
       .catch(err => {
         dispatch({
           type: types.FETCH_MESSAGES_FAILED,
+          payload: err
+        });
+      });
+  };
+};
+
+export const addMessage = newMessage => {
+  return dispatch => {
+    axios
+      .post(`http://localhost:8082/api/sosh/messages`, newMessage)
+      .then(res => {
+        const newMessage = res.data;
+        dispatch({
+          type: types.ADD_MESSAGE_SUCCESS,
+          payload: newMessage
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: types.ADD_MESSAGE_FAILED,
           payload: err
         });
       });

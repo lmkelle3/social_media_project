@@ -10,6 +10,10 @@ export default (state = initialState, action) => {
       return { ...state, all: action.payload };
     case types.FETCH_MESSAGES_FAILED:
       return action.payload;
+    case types.ADD_MESSAGE_SUCCESS:
+      return { ...state, all: [...state.all, action.payload] };
+    case types.ADD_MESSAGE_FAILED:
+      return action.payload;
     default:
       return state;
   }

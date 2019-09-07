@@ -12,9 +12,9 @@ const Conversations = props => {
       <Row>
         <Col>
           <Row>
-            <div className="mt-2">
-              <Button color="light">
-                <Link to={`/conversations`}>+ Start New Conversation</Link>
+            <div className="mt-2 ml-5">
+              <Button tag={Link} to={`/conversations`}>
+                Start New Conversation
               </Button>
             </div>
           </Row>

@@ -1,22 +1,37 @@
 import React from "react";
-import Friends from "./Friends";
+import FriendsListItem from "./FriendListItem";
 import { connect } from "react-redux";
 import { ListGroup } from "reactstrap";
 import { withRouter } from "react-router-dom";
 
 const FriendsList = props => {
-  //filter through the list of friends to see if the requesteeID ==  accepted true
-  let listOfFriends = props.friends.filter(friend =>
-    (friend.accepted == "true")
-      .push("")
-      .map(friend => <Friends key={friend.id} friend={friend} />)
+  let filterFriendsList = [];
+  const currentUser = props.loggedInUser;
+
+  props.friends.all.map(friend => {
+    if (friend.requesteeId === currentUser && friend.accepted === true) {
+      filterFriendsList.push(friend);
+    } else if (friend.requestorId === currentUser && friend.accepted === true) {
+      filterFriendsList.push(friend);
+    }
+  });
+
+  let listOfFriends = filterFriendsList.map(friend => (
+    <FriendsListItem key={friend.id} friend={friend} />
+  ));
+
+  return (
+    <div>
+      <h2 className="text-center">Friends</h2>
+      <ListGroup>{listOfFriends}</ListGroup>;
+    </div>
   );
-  return <ListGroup>{listOfFriends}</ListGroup>;
 };
 
 const mapStateToProps = (state, props) => {
   return {
-    friends: state.friends
+    friends: state.friends,
+    loggedInUser: state.users.loggedInUser.id
   };
 };
 

@@ -3,7 +3,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import TopNav from "./components/navigation/TopNav";
 import SideNav from "./components/navigation/SideNav";
 import Profile from "./components/profile/Profile";
-import FriendsList from "./components/friends/FriendsList";
+import Friends from "./components/friends/FriendsList";
 import Conversations from "./components/conversations/Conversations";
 
 import { connect } from "react-redux";
@@ -12,8 +12,7 @@ import { getUsers } from "./store/users/actions";
 import { fetchFriends } from "./store/friends/actions";
 import { fetchConvos } from "./store/conversations/actions";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { fetchMessages } from "./store/messages/actions";
-import ConversationForm from "./components/conversations/ConversationForm";
+import { fetchMessages, addMessage } from "./store/messages/actions";
 
 class App extends React.Component {
   componentDidMount() {
@@ -22,6 +21,7 @@ class App extends React.Component {
     this.props.dispatch(fetchFriends());
     this.props.dispatch(fetchConvos());
     this.props.dispatch(fetchMessages(this.props.loggedInUser.id));
+    this.props.dispatch(addMessage());
   }
 
   render() {
@@ -36,13 +36,13 @@ class App extends React.Component {
                 {/* <Route exact path="/" component={Login} /> */}
                 <Route path="/homepage" component={Dashboard} />
                 <Route path="/profile/:user_id" component={Profile} />
-                {/* <Route path="/friends" component={FriendsList} /> */}
+                <Route path="/friends" component={Friends} />
+                <Route exact path="/conversations" component={Conversations} />
                 <Route
                   exact
                   path="/conversations/:id"
                   component={Conversations}
                 />
-                <Route exact path="/conversations" component={Conversations} />
               </Switch>
             </div>
           </header>

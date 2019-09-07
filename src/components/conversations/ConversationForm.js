@@ -4,7 +4,7 @@ import { Form, Button, Input, InputGroup, Label, Row, Col } from "reactstrap";
 
 class ConversationForm extends Component {
   state = {
-    newMessage: ""
+    newConvo: ""
   };
 
   handleChange = e => {
@@ -14,18 +14,28 @@ class ConversationForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { newMessageTo, newMessage, messages } = this.state;
+    const { newConvoTo, newConvo, messages } = this.state;
     this.setState({
-      messages: [...messages, newMessage, newMessageTo],
-      newMessageTo: { content: this.state.newMessageTo },
-      newMessage: { content: this.state.newMessage }
+      messages: [...messages, newConvo, newConvoTo],
+      newConvoTo: { content: this.state.newConvoTo },
+      newMessage: { content: this.state.newConvo }
     });
     // this.props.dispatch(postMessage({ content: this.state.newMessage }));
   };
 
   render() {
+    // let listOfFriends = this.props.users
+    // .filter(user =>
+    //   user.name.includes(this.state.newMessage.charAt(0).toUpperCase())
+    // )
+    // .map(user => (
+    //     <FriendListItem
+    //       friend={friend}
+    //       key={user.id}
+    //     />
+    //   ));)
     return (
-      <div className="container">
+      <div>
         <Form onSubmit={this.handleSubmit}>
           <div>
             <Label>
@@ -39,7 +49,7 @@ class ConversationForm extends Component {
                 <Input
                   id="newMessageTo"
                   name="newMessageTo"
-                  value={this.state.newMessageTo}
+                  value={this.state.newConvoTo}
                   onChange={this.handleChange}
                 />
               </Row>
@@ -48,13 +58,13 @@ class ConversationForm extends Component {
                 <Input
                   id="newMessage"
                   name="newMessage"
-                  value={this.state.newMessage}
+                  value={this.state.newConvo}
                   onChange={this.handleChange}
                 />
               </Row>
               <Row>
                 <Button
-                  disabled={!this.state.newMessage}
+                  disabled={!this.state.newMessage && !this.state.newMessageTo}
                   className="btn-sm mt-2"
                   type="submit"
                   color="primary"
@@ -69,5 +79,9 @@ class ConversationForm extends Component {
     );
   }
 }
+
+// const mapStateToProps = state, props => {
+
+// }
 
 export default connect()(ConversationForm);

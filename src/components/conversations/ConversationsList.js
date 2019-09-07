@@ -7,6 +7,20 @@ import { withRouter } from "react-router-dom";
 
 const ConversationsList = props => {
   if (props.conversations) {
+    //   let filterConvoList = [];
+    //   const currentUser = props.loggedInUser;
+
+    //   props.conversations.map(convo => {
+    //     if (!convo.includes(convo.recipient_id) && !acc.includes(msg.sender_id) {
+    //       filterConvoList.push(friend);
+    //     } else if (
+    //       friend.requestorId === currentUser &&
+    //       friend.accepted === true
+    //     ) {
+    //       filterConvoList.push(friend);
+    //     }
+    //   });
+
     let listOfConvos = props.conversations.map((id, i) => (
       <ConvoListItem key={i} other_user_id={id} />
     ));
@@ -29,11 +43,12 @@ const ConversationsList = props => {
 
 const mapStateToProps = (state, props) => {
   return {
+    // conersations: state.messages.all
     conversations: state.messages.all.reduce((acc, msg) => {
       if (!acc.includes(msg.recipient_id) && !acc.includes(msg.sender_id)) {
         if (msg.recipient_id === state.users.loggedInUser.id) {
           acc.push(msg.sender_id);
-        } else {
+        } else if (msg.sender_id === state.users.loggedInUser.id) {
           acc.push(msg.recipient_id);
         }
       }
