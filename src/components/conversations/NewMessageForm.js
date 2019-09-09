@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, Input, Button } from "reactstrap";
 import { addMessage } from "../../store/messages/actions";
-import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
 class NewMessageForm extends Component {
@@ -27,7 +26,6 @@ class NewMessageForm extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <Form inline onSubmit={this.handleSubmit}>
         <Input
@@ -48,10 +46,6 @@ const mapStateToProps = (state, props) => {
     loggedInUser: state.users.loggedInUser
   };
 };
-
-// SomeFormComponent.propTypes = {
-//   someFunctionFromApp: PropTypes.func.isRequired
-// }
 
 export default connect(
   mapStateToProps,

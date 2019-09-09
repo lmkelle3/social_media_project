@@ -9,26 +9,10 @@ import { withRouter } from "react-router-dom";
 
 const ConversationsView = props => {
   if (props.messages.length) {
-    // let filteredMessages = [];
-
-    // const loggedInUser = props.loggedInUser;
-    // const selectedUser = props.users.find(user => user.id === props.other_person);
-
-    // props.messages.filter(message => {
-    //   if (message.sender_id === loggedInUser.id) {
-    //     filteredMessages.push(message);
-    //   } else if (message.recipient_id === loggedInUser.id) {
-    //     filteredMessages.push(message);
-    //   }
-    // });
-
     const listOfMessages = props.messages.map(message => (
-      // if (message.sender_id || message.recipient_id === selectedUser) {
       <MessageItem key={message.id} message={message} />
     ));
-    // }
 
-    console.log("ViewProps:", props);
     return (
       <div className="mt-2">
         <Col>
@@ -54,7 +38,6 @@ const ConversationsView = props => {
 };
 
 const mapStateToProps = (state, props) => {
-  console.log("OP", props.other_person);
   return {
     messages: state.messages.all.filter(
       message =>

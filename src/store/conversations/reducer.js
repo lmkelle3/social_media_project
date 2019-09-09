@@ -8,6 +8,10 @@ export default (state = initialState, action) => {
       return action.payload;
     case types.GET_CONVOS_FAILED:
       return action.payload;
+    case types.SEND_CONVO_SUCCESS:
+      return action.payload;
+    case types.SEND_CONVO_FAILED:
+      return action.payload;
     default:
       return state;
   }

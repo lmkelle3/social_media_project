@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 const ConvoListItem = props => {
   return (
     <div>
-      <Link to={`/conversations/${props.otherUser.id}`}>
+      <Link to={`/conversations/${props.other_user_id}`}>
         <ListGroupItem>
           <Col>
             <Row>
