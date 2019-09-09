@@ -43,10 +43,12 @@ class ConversationForm extends Component {
     console.log("LOF:", listOfFriends);
 
     const user_id = this.props.users.filter(user => user.id);
+    console.log("USERID:", user_id);
     const user_name = this.props.users.filter(user => user.name);
+    console.log("USERID:", user_name);
 
     let filterFriendsList = listOfFriends
-      .filter((friend => {
+      .filter(friend => {
         if (friend.requesteeId === user_id) {
           user_name.includes(this.state.newConvoTo.charAt(0).toUpperCase());
         }
@@ -72,7 +74,7 @@ class ConversationForm extends Component {
                   value={this.state.newConvoTo}
                   onChange={this.handleChange}
                 />
-                <div>{filterList}</div>
+                <div>{filterFriendsList}</div>
               </Row>
               <Row>
                 <p className="mt-2">Body:</p>
@@ -104,12 +106,13 @@ class ConversationForm extends Component {
 const mapStateToProps = (state, props) => {
   console.log("Friends:", state.friends.all);
   console.log("OP:", state.other_person);
+  console.log("state.newConvo", state.newConvo);
   return {
     friends: state.friends.all,
     users: state.users.all,
     currentUser: state.users.loggedInUser,
-    recipient: this.props.users.reduce((acc, user) => {
-      if (this.state.newConvoTo === user.name) {
+    recipient: state.users.all.reduce((acc, user) => {
+      if (state.newConvoTo === user.name) {
         acc.push(user.id);
       }
       return acc;
