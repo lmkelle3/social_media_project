@@ -29,13 +29,13 @@ class ConversationForm extends Component {
   };
 
   render() {
-    const recipient_id = this.state.users.all.reduce((acc, user) => {
+    const recipient_id = this.props.users.reduce((acc, user) => {
       if (this.state.newConvoTo === user.name) {
         acc.push(user.id);
       }
       return acc;
     }, []);
-    const recipient_name = this.state.users.all.reduce((acc, user) => {
+    const recipient_name = this.props.users.reduce((acc, user) => {
       if (this.state.newConvoTo === user.name) {
         acc.push(user.name);
       }
