@@ -31,7 +31,7 @@ const ConversationsView = props => {
   } else {
     return (
       <div>
-        <ConversationForm />
+        <ConversationForm messages={props.messages} users={props.users} />
       </div>
     );
   }

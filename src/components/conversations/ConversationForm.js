@@ -12,7 +12,9 @@ class ConversationForm extends Component {
 
   handleChange = e => {
     let { name, value } = e.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () =>
+      console.log("NEWCONVOTO:", this.state.newConvoTo)
+    );
   };
 
   handleSubmit = e => {
@@ -20,13 +22,26 @@ class ConversationForm extends Component {
 
     this.props.addConvo({
       sender_id: this.props.currentUser,
-      recipient_id: this.props.recipient,
+      recipient_id: this.props.recipient_id,
       newConvo: { content: [this.state.newConvoTo, this.state.newConvoMsg] }
     });
     this.setState({ newConvoMsg: "", newConvoTo: "" });
   };
 
   render() {
+    const recipient_id = this.state.users.all.reduce((acc, user) => {
+      if (this.state.newConvoTo === user.name) {
+        acc.push(user.id);
+      }
+      return acc;
+    }, []);
+    const recipient_name = this.state.users.all.reduce((acc, user) => {
+      if (this.state.newConvoTo === user.name) {
+        acc.push(user.name);
+      }
+      return acc;
+    }, []);
+
     let listOfFriends = [];
     const currentUser = this.props.currentUser.id;
 
@@ -42,19 +57,16 @@ class ConversationForm extends Component {
     });
     console.log("LOF:", listOfFriends);
 
-    const user_id = this.props.users.filter(user => user.id);
-    console.log("USERID:", user_id);
-    const user_name = this.props.users.filter(user => user.name);
-    console.log("USERID:", user_name);
-
     let filterFriendsList = listOfFriends
       .filter(friend => {
-        if (friend.requesteeId === user_id) {
-          user_name.includes(this.state.newConvoTo.charAt(0).toUpperCase());
+        if (friend.requesteeId == this.props.recipient_id) {
+          this.props.recipient_name.includes(
+            this.state.newConvoTo.charAt(0).toUpperCase()
+          );
         }
       })
       .map((id, i) => <FriendsListFilter key={i} other_user_id={id} />);
-
+    console.log("recipient:", this.props.recipient);
     console.log("filterFriendsList:", filterFriendsList);
     return (
       <div>
@@ -104,19 +116,10 @@ class ConversationForm extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log("Friends:", state.friends.all);
-  console.log("OP:", state.other_person);
-  console.log("state.newConvo", state.newConvo);
   return {
     friends: state.friends.all,
     users: state.users.all,
-    currentUser: state.users.loggedInUser,
-    recipient: state.users.all.reduce((acc, user) => {
-      if (state.newConvoTo === user.name) {
-        acc.push(user.id);
-      }
-      return acc;
-    }, [])
+    currentUser: state.users.loggedInUser
   };
 };
 
