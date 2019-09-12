@@ -16,6 +16,8 @@ class NewMessageForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log("CURRENTUSER:", this.props.loggedInUser.id);
+    console.log("Recipient:", this.props.match.params.id);
     this.props.addMessage({
       recipient_id: Number(this.props.match.params.id),
       sender_id: this.props.loggedInUser.id,

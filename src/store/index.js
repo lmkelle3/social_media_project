@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import usersReducer from "./users/reducer";
 import statusesReducer from "./statuses/reducer";
 import friendsReducer from "./friends/reducer";
@@ -17,4 +17,9 @@ const rootReducer = combineReducers({
 
 const middleware = [thunk, logger];
 
-export default createStore(rootReducer, applyMiddleware(...middleware));
+const enhancements = [applyMiddleware(...middleware)];
+if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+  enhancements.push(window.__REDUX_DEVTOOLS_EXTENSION__());
+}
+
+export default createStore(rootReducer, {}, compose(...enhancements));

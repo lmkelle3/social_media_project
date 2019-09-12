@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, Button, Input, InputGroup, Label, Row, Col } from "reactstrap";
-import { addConvo } from "../../store/conversations/actions";
+import { addMessage } from "../../store/messages/actions";
 import FriendsListFilter from "./FriendsListFilter";
 
 class ConversationForm extends Component {
@@ -20,10 +20,12 @@ class ConversationForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.addConvo({
-      sender_id: this.props.currentUser,
-      recipient_id: this.props.recipient_id,
-      newConvo: { content: [this.state.newConvoTo, this.state.newConvoMsg] }
+    console.log("CURRENTUSER:", this.props.currentUser.id);
+    console.log("PROPS:", this.props);
+    this.props.addMessage({
+      sender_id: this.props.currentUser.id,
+      recipient_id: Number(this.state.newConvoTo),
+      body: this.state.newConvoMsg
     });
     this.setState({ newConvoMsg: "", newConvoTo: "" });
   };
@@ -80,12 +82,17 @@ class ConversationForm extends Component {
             <Col>
               <Row>
                 <p>To:</p>
-                <Input
+                <select
                   id="newConvoTo"
                   name="newConvoTo"
                   value={this.state.newConvoTo}
                   onChange={this.handleChange}
-                />
+                >
+                  {this.props.users.map(user => (
+                    <option value={user.id}>{user.name}</option>
+                  ))}
+                </select>
+
                 <div>{filterFriendsList}</div>
               </Row>
               <Row>
@@ -125,5 +132,5 @@ const mapStateToProps = (state, props) => {
 
 export default connect(
   mapStateToProps,
-  { addConvo }
+  { addMessage }
 )(ConversationForm);

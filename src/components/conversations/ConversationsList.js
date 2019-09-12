@@ -21,6 +21,7 @@ const ConversationsList = props => {
     //   }
     // });
 
+    console.log("CONVOPROPS:", props.conversations);
     let listOfConvos = props.conversations.map((id, i) => (
       <ConvoListItem key={i} other_user_id={id} />
     ));
@@ -44,12 +45,16 @@ const ConversationsList = props => {
 const mapStateToProps = (state, props) => {
   return {
     conversations: state.messages.all.reduce((acc, msg) => {
-      if (!acc.includes(msg.recipient_id) && !acc.includes(msg.sender_id)) {
-        if (msg.recipient_id === state.users.loggedInUser.id) {
-          acc.push(msg.sender_id);
-        } else if (msg.sender_id === state.users.loggedInUser.id) {
-          acc.push(msg.recipient_id);
-        }
+      if (
+        msg.recipient_id === state.users.loggedInUser.id &&
+        !acc.includes(msg.sender_id)
+      ) {
+        acc.push(msg.sender_id);
+      } else if (
+        msg.sender_id === state.users.loggedInUser.id &&
+        !acc.includes(msg.recipient_id)
+      ) {
+        acc.push(msg.recipient_id);
       }
       return acc;
     }, [])
